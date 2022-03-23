@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<style>
+    h1{
+        text-align: center;
+        color: red;
+        text-decoration: underline;
+    }
+</style>
+<body>
+    <h1>Promises in javascript</h1>
+    <script>
+        // promise: it maybe 
+        // 1.resolve,
+        // 2. reject
+        // 3.pending
+        // promise is used as a subjstitue of call back function 
+                           
+        function fun1(){
+            return new Promise((resolve,reject)=>{
+                setTimeout(() => {
+                    let error = true;
+                    if(!error){
+                        console.log('it resolved');
+                        resolve('ThankYou');
+                    }else{
+                        console.log('its rejected');
+                        reject('so its rejected');
+                    }
+                }, 2000);
+            })
+        }
+        fun1().then(function(done){
+            console.log('thanks for resolving '+done)
+        }).catch(function(error){
+            console.log('very bad '+error)
+        });
+
+        // Note :- here parameter done represents : reolve() function parameter in promise
+        // Note :- here parameter error represents : reject() function parameter in promise
+
+        console.log('****USE FO PROMISES ******');
+        let students = [
+             {name:'student1',subject:'javaScript'},
+             {name:'student2',subject:'java'}
+         ];
+
+         function enrollStudent(newstd){
+             return new Promise(function(resolve,reject){
+                 setTimeout(() => {
+                    students.push(newstd);
+                 console.log('new std has been enrolled');
+                 let error = false;
+                 if(!error){
+                     resolve();
+                 }else{
+                     reject();
+                 }
+                 }, 5000);
+             });
+         };
+         function getStudent(){
+            setTimeout(() => {
+                console.log(students);
+            }, 2000);
+         }
+         let newjoine = {name:'student3',subject:'python'};
+         enrollStudent(newjoine).then(function(){
+             getStudent();
+         }).catch(function(){
+             console.log('error is occured')
+         })
+    </script>
+</body>
+</html>

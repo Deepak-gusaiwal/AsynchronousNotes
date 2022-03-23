@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CallBack Functions</title>
+</head>
+<style>
+    h1{
+        text-align: center;
+        text-decoration: underline;
+        color: red;
+    }
+</style>
+<body>
+    <h1>Call-Back-Functions</h1>
+    <script>
+         console.log('callBackFunctions');
+
+         let students = [
+             {name:'student1',subject:'javaScript'},
+             {name:'student2',subject:'java'}
+         ];
+
+         function enrollStudent(newStudent,callback){
+            setTimeout(() => {
+                students.push(newStudent);
+                console.log('student is enrolled');
+                callback();
+            }, 3000);
+            
+         }
+         function getStudent(){
+            setTimeout(() => {
+                console.log(students);
+            }, 2000);
+         }
+         let newjoine = {name:'student3',subject:'python'};
+         enrollStudent(newjoine,getStudent);
+         
+         
+    </script>
+</body>
+</html>

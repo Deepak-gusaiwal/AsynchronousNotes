@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Post Request</title>
+</head>
+<style>
+    body {
+        /* text-align: start; */
+        text-transform: uppercase;
+        font-size: 2rem;
+
+    }
+
+    .btn {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-transform: capitalize;
+        font-size: 1.8rem;
+    }
+
+    #fetchData {
+        background-color: rgb(253, 95, 95);
+        color: white;
+    }
+    #fetchData:hover{
+        background-color: rgb(253, 67, 67);
+        transition: 500ms;
+    }
+
+    .printItems {
+        /* background-color: blue; */
+        font-size: 1.3rem;
+        text-transform: capitalize;
+    }
+
+   
+</style>
+
+<body>
+    <h2>AJAX Tutorial POST Request</h2>
+    <button class="btn" id="fetchData">FetchData</button>
+    <button class="btn" id="backUp">BackUpBtton</button>
+
+    <script>
+        console.log('////////////////////////AJAX////////////////////////');
+        let body = document.querySelector('body');
+        let fetchData = document.getElementById('fetchData');
+
+
+        fetchData.addEventListener('click', fun);
+        function fun() {
+            console.log('send request');
+            let request = new XMLHttpRequest;
+            let url = '';
+            request.open('POST', url, true);
+            request.getResponseHeader('Content-type','appplication/json');
+            request.onprogress = function () {
+                body.style.backgroundColor = 'green';
+                window.alert('your request is Under progress')
+            }
+
+            request.onload = function () {
+                if (this.status === 200 && this.readyState === 4) {
+                    setTimeout(() => {
+                        let data = JSON.parse(this.responseText);
+                      console.log(data)
+                        body.style.backgroundColor = '';
+                    }, 2000);
+                } else {
+                    console.log('file is not found');
+                    body.style.backgroundColor = 'red';
+                }
+            }
+            params = `{'name':'text232',
+                        'salary':'123',
+                    'age': '23'}`
+            request.send();
+        }
+    </script>
+</body>
+
+</html>

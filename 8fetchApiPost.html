@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Api</title>
+</head>
+<style>
+     h1{
+        text-align: center;
+        color: red;
+        text-decoration: underline;
+    }
+    #fetchData{
+        padding: 5px 10px;
+        font-size: 1.5rem;
+        text-transform: capitalize;
+        background-color: rgb(250, 60, 60);
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 500ms;
+    }
+    #fetchData:hover{
+        background-color: rgb(60, 111, 250);
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>FetchApi in POST Request</h1>
+        <button class="btn" id="fetchData">Send-Data</button>
+    </div>
+  
+
+    <script>
+        let SendData = document.getElementById('fetchData');
+        SendData.addEventListener('click',getData)
+        function getData(){
+            console.log('in getData()')
+            let url = 'https://reqres.in/api/users?page=2'
+            data = {
+                message:'no Message',
+                createdAt:'sjflsjfd',
+                id:786
+            }
+            let p1 = {
+                method:'POST',
+                headers:{
+                    "Content-Type":'application/json'
+                },
+                body:JSON.stringify(data)
+            }
+            fetch(url,p1).then((response)=>{
+                return response.json();
+            }).then((data)=>{
+                console.log(data)
+            });
+        };
+
+    </script>
+</body>
+</html>

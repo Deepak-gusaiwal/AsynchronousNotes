@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Api</title>
+</head>
+<style>
+     h1{
+        text-align: center;
+        color: red;
+        text-decoration: underline;
+    }
+    #fetchData{
+        padding: 5px 10px;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        background-color: rgb(250, 60, 60);
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 500ms;
+    }
+    #fetchData:hover{
+        background-color: rgb(60, 111, 250);
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>FetchApi in GET Request</h1>
+        <button class="btn" id="fetchData">FetchData</button>
+    </div>
+    <div id="content">
+
+    </div>
+
+    <script>
+        let fetchData = document.getElementById('fetchData');
+        let content = document.getElementById('content');
+
+        function getData(){
+            console.log('in getData()')
+            let url = 'https://api.github.com/users'
+            fetch(url).then((response)=>{
+                console.log('in first then')
+                return response.json();
+            }).then((data)=>{
+                console.log('in second then')
+                console.log(data)
+            });
+        };
+        console.log('before')
+        getData();
+        console.log('after')
+
+    </script>
+</body>
+</html>

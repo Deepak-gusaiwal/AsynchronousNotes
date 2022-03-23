@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async&Await</title>
+</head>
+<body>
+    
+    <script>
+        console.log('Async&Await');
+        let body =document.querySelector('body');
+        async function fun(){
+            let response = await fetch('https://api.github.com/users');
+            let users = await response.json();
+            return users
+        }
+        let a=fun();
+        // console.log(a)// it syas promise pendding becasue a is not resolved yet
+        // a.then(function(data){// here it gets resolved
+        //     console.log(data);
+        // });
+        a.then((data)=>{
+            console.log(data);
+                body.style.background='green';
+            body.style.background='green';
+        }).catch((error)=>{
+            console.log('there has some error '+error);
+                body.style.background='red';
+        })
+    </script>
+</body>
+</html>
